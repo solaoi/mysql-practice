@@ -72,9 +72,9 @@ cd [このファイルがあるディレクトリ] && docker-compose down -v
 
 実際に上記手順で作成したMySQL上でデータを作成してみます。
 
-以下、MySQLにログインした状態で行ってください。
-
 1. sampleデータベースを作成
+
+MySQLにログインして実行します。
 
 ```
 mysql> CREATE DATABASE sample;
@@ -120,6 +120,8 @@ MySQLからログアウトし、 MySQLを利用できる環境で実行します
 
 1. テーブルの一覧を確認   
 
+MySQLにログインして実行します。
+
 ```
 mysql> SHOW TABLES;
 ```
@@ -131,6 +133,8 @@ mysql> DROP TABLE users;
 ```
 
 10. usersテーブルをバックアップから復元
+
+MySQLからログアウトし、 MySQLを利用できる環境で実行します。
 
 ```
 [root@mysql /]$ mysql -u root -ppassword sample < /tmp/users.sql
