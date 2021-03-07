@@ -8,6 +8,12 @@
 
 https://www.docker.com/get-started
 
+### このリポジトリをclone
+
+```
+git clone https://github.com/solaoi/mysql-practice.git
+```
+
 ### MySQLおよびphpMyAdminを起動
 
 ```
