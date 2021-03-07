@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: mysql-practice_mysql
+    build:
+      context: .
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: mysql-practice_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+
+volumes:
+  mysql_data:
+    driver: local
