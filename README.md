@@ -8,6 +8,12 @@
 
 https://www.docker.com/get-started
 
+### このリポジトリをclone
+
+```
+git clone https://github.com/solaoi/mysql-practice.git
+```
+
 ### MySQLおよびphpMyAdminを起動
 
 ```
@@ -65,6 +71,7 @@ cd [このファイルがあるディレクトリ] && docker-compose down -v
 ## 練習
 
 実際に上記手順で作成したMySQL上でデータを作成してみます。
+
 以下、MySQLにログインした状態で行ってください。
 
 1. sampleデータベースを作成
