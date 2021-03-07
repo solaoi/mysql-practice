@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./tmp:/tmp
 
   phpmyadmin:
     container_name: mysql-practice_phpmyadmin

@@ -29,19 +29,19 @@ docker exec -it mysql-practice_mysql /bin/bash
 2. MySQLにログイン
 
 ```
-mysql -u root -ppassword
+[root@mysql /]$ mysql -u root -ppassword
 ```
 
 3. MySQLからログアウト
 
 ```
-\q
+mysql> \q
 ```
 
 4. MySQLを利用できる環境からログアウト
 
 ```
-exit
+[root@mysql /]$ exit
 ```
 
 ### MySQLおよびphpMyAdminが実行中か確認
@@ -70,29 +70,61 @@ cd [このファイルがあるディレクトリ] && docker-compose down -v
 1. sampleデータベースを作成
 
 ```
-CREATE DATABASE sample;
+mysql> CREATE DATABASE sample;
 ```
 
 2. 使用データベースを選択
 
 ```
-use sample;
+mysql> use sample;
 ```
 
 3. usersテーブルを作成
 
 ```
-CREATE TABLE users (id int, name varchar(10));
+mysql> CREATE TABLE users (id int, name varchar(10));
 ```
 
 4. userを追加
 
 ```
-INSERT INTO users VALUES (1, "あお太");
+mysql> INSERT INTO users VALUES (1, "あお太");
 ```
 
 5. usersテーブルにuserが追加されたか確認
 
 ```
-SELECT * FROM users;
+mysql> SELECT * FROM users;
+```
+
+6. usersテーブルにcsvファイルからuserを追加  
+MySQLからログアウトし、 MySQLを利用できる環境で実行します。   
+（/tmpディレクトリに置いたファイルを参照・更新できるようDockerを設定しています。）
+
+```
+[root@mysql /]$ mysqlimport -u root -ppassword --local --fields-terminated-by="," --fields-enclosed-by='"' sample /tmp/users.csv
+```
+
+7. usersテーブルをバックアップ   
+
+```
+[root@mysql /]$ mysqldump -u root -ppassword sample users --master-data --single-transaction > /tmp/users.sql
+```
+
+1. テーブルの一覧を確認   
+
+```
+mysql> SHOW TABLES;
+```
+
+1.  usersテーブルを削除
+
+```
+mysql> DROP TABLE users;
+```
+
+10. usersテーブルをバックアップから復元
+
+```
+[root@mysql /]$ mysql -u root -ppassword sample < /tmp/users.sql
 ```
